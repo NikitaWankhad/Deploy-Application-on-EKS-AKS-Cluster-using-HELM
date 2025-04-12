@@ -1,1 +1,40 @@
+step 1 :
+sudo yum install wget
+step 2 :
+wget https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz
+tar -xvzf apache-maven-3.9.9-bin.tar.gz
+step 3:
+edit .bash_profile to define env variable
+export M2_HOME=/home/ec2-user/apache-maven-3.9.9
+export M2=$M2_HOME/bin
+PATH=$PATH:$M2
+then run 
+source ~/.bash_profile 
+1. export M2_HOME=/root/apache-maven-3.9.9
+🗣️ "Hey system, Maven is installed in this folder: /root/apache-maven-3.9.9."
 
+This sets an environment variable called M2_HOME that points to where Maven is installed.
+
+2. export M2=$M2_HOME/bin
+🗣️ "Create another variable called M2 that points to the bin folder inside Maven."
+
+So now:
+M2 = /root/apache-maven-3.9.9/bin
+
+The bin folder is where the mvn command actually lives.
+
+3. PATH=$PATH:$M2
+🗣️ "Add the M2 folder to the system PATH."
+
+PATH is a list of places the system looks when you type a command like mvn.
+By adding $M2, you're saying:
+"Include the folder where the mvn command is, so I can run mvn from anywhere."
+
+When you add something (like environment variables) to .bash_profile, it won’t take effect until you log out and log back in, or until you reload the file.
+
+Steps to install git
+yum install git
+
+Assign shell to jenkins user
+vi /etc/passwd
+change shell from /bin/false to /bin/bash
